@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday Meesakari ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+
+/* 🌈 Animated background */
+body{
+  min-height:100vh;
+  overflow-x:hidden;
+  background:linear-gradient(270deg,#ffd6e8,#ffe6f0,#fff1f7,#ffd1dc);
+  background-size:600% 600%;
+  animation:bgMove 18s ease infinite;
+}
+
+@keyframes bgMove{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+/* ❤️ Falling hearts (background) */
+.heart{
+  position:fixed;
+  top:-20px;
+  font-size:20px;
+  color:rgba(255,77,109,0.35);
+  pointer-events:none;
+  z-index:0;
+  animation:fall linear infinite;
+}
+
+@keyframes fall{
+  0%{opacity:0;transform:translateY(0)}
+  10%{opacity:1}
+  100%{opacity:0;transform:translateY(110vh)}
+}
+
+/* 💎 Glass container */
+.container{
+  position:relative;
+  z-index:2;
+  max-width:1000px;
+  margin:40px auto;
+  padding:30px;
+  background:rgba(255,255,255,0.65);
+  backdrop-filter:blur(12px);
+  border-radius:20px;
+  box-shadow:0 20px 40px rgba(0,0,0,0.15);
+  text-align:center;
+}
+
+.title{
+  font-family:'Great Vibes',cursive;
+  font-size:3.6rem;
+  color:#ff4d6d;
+}
+
+.subtitle{
+  color:#555;
+  margin:10px 0 30px;
+}
+
+/* 📸 Polaroids */
+.polaroids{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:35px;
+}
+
+.polaroid{
+  background:white;
+  padding:18px 18px 55px;
+  width:260px;
+  box-shadow:0 14px 34px rgba(0,0,0,0.28);
+  transform:rotate(-4deg);
+  transition:all 0.3s ease;
+}
+
+.polaroid:nth-child(even){
+  transform:rotate(4deg);
+}
+
+.polaroid:hover{
+  transform:scale(1.08) rotate(0deg);
+}
+
+.polaroid img{
+  width:100%;
+  height:280px;
+  object-fit:cover;
+}
+
+.polaroid p{
+  margin-top:10px;
+  font-size:0.95rem;
+}
+
+.message{
+  margin-top:25px;
+  font-size:1.1rem;
+  line-height:1.8;
+  color:#333;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🎵 Background Song -->
+<audio id="bgSong" autoplay loop muted>
+  <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container">
+  <div class="title">Happy Birthday Meesakari 🫶🎀</div>
+  <div class="subtitle">A little page made with lots of heart</div>
+
+  <div class="polaroids">
+    <div class="polaroid">
+      <img src="img1.jpg">
+      <p>Always smiling ✨</p>
+    </div>
+    <div class="polaroid">
+      <img src="img2.jpg">
+      <p>Pure vibes 💫</p>
+    </div>
+    <div class="polaroid">
+      <img src="img3.jpg">
+      <p>Unforgettable 🌸</p>
+    </div>
+  </div>
+
+  <div class="message">
+    On this special day,<br>
+    I just want you to know…<br><br>
+    Your smile makes everything brighter 🤍
+  </div>
+</div>
+
+<script>
+const song=document.getElementById("bgSong");
+
+/* Laptop autoplay */
+window.addEventListener("load",()=>{
+  song.play().catch(()=>{});
+});
+
+/* Mobile: first touch = sound ON */
+document.addEventListener("touchstart",()=>{
+  song.muted=false;
+  song.play();
+},{once:true});
+
+/* Falling hearts */
+function createHeart(){
+  const heart=document.createElement("div");
+  heart.className="heart";
+  heart.innerHTML="❤️";
+  heart.style.left=Math.random()*100+"vw";
+  heart.style.animationDuration=(Math.random()*5+6)+"s";
+  document.body.appendChild(heart);
+  setTimeout(()=>heart.remove(),11000);
+}
+setInterval(createHeart,500);
+</script>
+
+</body>
+</html>
